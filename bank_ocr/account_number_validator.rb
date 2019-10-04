@@ -1,8 +1,12 @@
 class AccountNumberValidator
   def self.valid?(number)
-    sum = number.reverse.chars.each_with_index.reduce(0) do |sum, (digit, i)|
-      sum += (i + 1) * digit.to_i
-    end
-    sum % 11 == 0
+    return false if number.include?('?')
+    
+    reversed_number_array = number.reverse.chars
+    reversed_number_array
+      .each_with_index
+      .reduce(0) { |sum, (digit, i)| sum += (i + 1) * digit.to_i }
+      .modulo(11)
+      .zero?
   end
 end

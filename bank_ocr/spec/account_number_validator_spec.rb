@@ -12,5 +12,10 @@ describe AccountNumberValidator do
       result = AccountNumberValidator.valid?('664371495')
       expect(result).to eq(false)
     end
+
+    it 'returns false when the number contains a question mark' do
+      result = AccountNumberValidator.valid?('?23456213')
+      expect(result).to eq(false)
+    end
   end
 end
